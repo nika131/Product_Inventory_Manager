@@ -23,10 +23,7 @@ namespace Product_Inventory_Manager
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
 
-        private void refreshGrd()
-        {
-            dgvProducts.DataSource = DatabaseHelper.ExecuteStoredProcedure("sp_GetAllProducts");
-        }
+       
 
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
@@ -35,6 +32,9 @@ namespace Product_Inventory_Manager
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTotalItems;
+        private System.Windows.Forms.Label lblTotalValue;
+        private System.Windows.Forms.Label lblLowStock;
     }
 }
 

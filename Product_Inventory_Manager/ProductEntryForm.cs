@@ -11,47 +11,35 @@ using System.Windows.Forms;
 
 namespace Product_Inventory_Manager
 {
-    public partial class ProductEntryForm : Form 
+    public partial class ProductEntryForm : Form, IProductEntryView
     {
-        public string productName { get => txtName.Text; set => txtName.Text = value; }
-        public decimal productPrice { get => numPrice.Value; set => numPrice.Value = value; }
-        public int productQuantity { get => (int)numQuantity.Value; set => numQuantity.Value = value; }
-        public int caregoryId { get => (int)cbCategory.SelectedValue; set => cbCategory.SelectedValue = value; }
-        public int productId { get; set; } = 0;
+        private ProductEntryPresenter _presenter;
+
         public ProductEntryForm()
         {
             InitializeComponent();
+            _presenter = new ProductEntryPresenter(this);
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+
+        public string productName { get => txtName.Text; set => txtName.Text = value; }
+        public decimal productPrice { get => numPrice.Value; set => numPrice.Value = value; }
+        public int productQuantity { get => (int)numQuantity.Value; set => numQuantity.Value = value; }
+        public int categoryId
         {
-
+            get => cbCategory.SelectedValue != null ? (int)cbCategory.SelectedValue : 0;
+            set => cbCategory.SelectedValue = value;
         }
+        public int productId { get; set; } = 0;
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var args = new Dictionary<string, object>
-            {
-                { "@id", this.productId  },
-                { "@name", txtName.Text },
-                { "@catId", cbCategory.SelectedValue },
-                { "@qty", numQuantity.Value },
-                { "@price", numPrice.Value },
-            };
-
-            DatabaseHelper.ExecuteNonQuery("sp_upsertProduct", args);
-            this.DialogResult = DialogResult.OK;
+            _presenter.saveProduct();
         }
+
+        public void showMessage(string message) => MessageBox.Show(message);
+        public void closeView() => this.DialogResult = DialogResult.OK;
 
         private void ProductEntryForm_Load(object sender, EventArgs e)
         {
@@ -68,6 +56,11 @@ namespace Product_Inventory_Manager
         }
 
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
         {
 
         }

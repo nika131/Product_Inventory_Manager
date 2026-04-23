@@ -15,44 +15,66 @@ namespace Product_Inventory_Manager.Data
 
         public static DataTable ExecuteStoredProcedure(string procedureName, Dictionary<string, object> parametrs = null)
         {
-            using (SqlConnection conn = new SqlConnection(connString))
+            try
             {
-                using (SqlCommand cmd = new SqlCommand(procedureName, conn))
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    if (parametrs != null)
+                    using (SqlCommand cmd = new SqlCommand(procedureName, conn))
                     {
-                        foreach (var param in parametrs)
-                        {
-                            cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
-                        }
-                    }
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    DataTable dt = new DataTable();
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    adapter.Fill(dt);
-                    return dt;
+                        if (parametrs != null)
+                        {
+                            foreach (var param in parametrs)
+                            {
+                                cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
+                            }
+                        }
+
+                        DataTable dt = new DataTable();
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(dt);
+                        return dt;
+                    }
                 }
             }
+            catch (SqlException)
+            {
+                throw new Exception("Database Error: We couldn't retrieve the products. Please check your connection.");
+            }catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred: " + ex.Message);
+            }
+            
         }
 
         public static int ExecuteNonQuery(string procedureName, Dictionary<string, object> parameters)
         {
-            using (SqlConnection conn = new SqlConnection(connString))
+            try
             {
-                using (SqlCommand cmd = new SqlCommand(procedureName, conn))
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    foreach (var param in parameters)
+                    using (SqlCommand cmd = new SqlCommand(procedureName, conn))
                     {
-                        cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
-                    }
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    conn.Open();
-                    return cmd.ExecuteNonQuery();
+                        foreach (var param in parameters)
+                        {
+                            cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
+                        }
+
+                        conn.Open();
+                        return cmd.ExecuteNonQuery();
+                    }
                 }
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Database Error: We couldn't update the products. Please check your connection.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred: " + ex.Message);
             }
         }
     }
