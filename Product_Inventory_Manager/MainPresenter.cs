@@ -59,8 +59,10 @@ namespace Product_Inventory_Manager
 
             foreach (DataRow row in dt.Rows)
             {
-                totalValues += Convert.ToDecimal(row["ProductPrice"]) * Convert.ToInt32(row["Quantity"]);
-                if (Convert.ToInt32(row["Quantity"]) < 5) lowStock++;
+                decimal price = row["ProductPrice"] != DBNull.Value ? Convert.ToDecimal(row["ProductPrice"]) : 0;
+                int qty = row["Quantity"] != DBNull.Value ? Convert.ToInt32(row["Quantity"]) : 0;
+                totalValues += (price * qty);
+                if (qty < 5) lowStock++;
             }
 
             _view.totalItemsText = $"Total Products: {totalItmes}";

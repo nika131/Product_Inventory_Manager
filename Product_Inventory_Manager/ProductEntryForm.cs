@@ -25,9 +25,11 @@ namespace Product_Inventory_Manager
         public string productName { get => txtName.Text; set => txtName.Text = value; }
         public decimal productPrice { get => numPrice.Value; set => numPrice.Value = value; }
         public int productQuantity { get => (int)numQuantity.Value; set => numQuantity.Value = value; }
+        private int _initialId;
+        public int initialCategoryId { get => _initialId; set => _initialId = value; }
         public int categoryId
         {
-            get => cbCategory.SelectedValue != null ? (int)cbCategory.SelectedValue : 0;
+            get => cbCategory.SelectedValue != null ? (int)cbCategory.SelectedValue : _initialId;
             set => cbCategory.SelectedValue = value;
         }
         public int productId { get; set; } = 0;
@@ -49,7 +51,7 @@ namespace Product_Inventory_Manager
         }
         private void ProductEntryForm_Load(object sender, EventArgs e)
         {
-            _presenter.showCategories(this.categoryId);
+            _presenter.showCategories(this.initialCategoryId);
         }
 
         private void numPrice_ValueChanged(object sender, EventArgs e)

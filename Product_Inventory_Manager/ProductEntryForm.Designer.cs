@@ -63,6 +63,7 @@
             // 
             // numPrice
             // 
+            this.numPrice.DecimalPlaces = 2;
             this.numPrice.Location = new System.Drawing.Point(430, 35);
             this.numPrice.Name = "numPrice";
             this.numPrice.Size = new System.Drawing.Size(120, 22);

@@ -14,6 +14,7 @@ namespace Product_Inventory_Manager
         decimal productPrice { get; set; }
         int productQuantity { get; set; }
         int categoryId { get; set; }
+        int initialCategoryId { get; set; }
 
         void showMessage(string message);
         void closeView();

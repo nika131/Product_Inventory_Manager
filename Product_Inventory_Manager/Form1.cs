@@ -17,6 +17,7 @@ namespace Product_Inventory_Manager
         public Form1()
         {
             InitializeComponent();
+            dgvProducts.AutoGenerateColumns = false;
             _presenter = new MainPresenter(this, new ProductRepository());
             _presenter.refreshData();
             this.dgvProducts.CellFormatting += new DataGridViewCellFormattingEventHandler(this.dgvProducts_CellFormatting);
@@ -60,7 +61,7 @@ namespace Product_Inventory_Manager
                     form.productName = row.Cells["ProductName"].Value.ToString();
                     form.productPrice = (decimal)row.Cells["ProductPrice"].Value;
                     form.productQuantity = (int)row.Cells["Quantity"].Value;
-                    form.categoryId = (int)row.Cells["CategoryId"].Value;
+                    form.initialCategoryId = (int)row.Cells["CategoryId"].Value;
 
                     if (form.ShowDialog() == DialogResult.OK)
                     {
@@ -157,7 +158,7 @@ namespace Product_Inventory_Manager
             // 
             // ProductName
             // 
-            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.DataPropertyName = "ProductName"; 
             this.ProductName.HeaderText = "ProductName";
             this.ProductName.MinimumWidth = 6;
             this.ProductName.Name = "ProductName";
@@ -287,5 +288,7 @@ namespace Product_Inventory_Manager
             this.PerformLayout();
 
         }
+
+        
     }
 }
