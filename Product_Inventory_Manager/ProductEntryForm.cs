@@ -18,7 +18,7 @@ namespace Product_Inventory_Manager
         public ProductEntryForm()
         {
             InitializeComponent();
-            _presenter = new ProductEntryPresenter(this);
+            _presenter = new ProductEntryPresenter(this, new ProductRepository());
         }
 
 
@@ -41,13 +41,15 @@ namespace Product_Inventory_Manager
         public void showMessage(string message) => MessageBox.Show(message);
         public void closeView() => this.DialogResult = DialogResult.OK;
 
-        private void ProductEntryForm_Load(object sender, EventArgs e)
+        public void loadCategories(DataTable categories)
         {
-            DataTable dt = DatabaseHelper.ExecuteStoredProcedure("sp_GetCategories");
-
-            cbCategory.DataSource = dt;
+            cbCategory.DataSource = categories;
             cbCategory.DisplayMember = "Name";
             cbCategory.ValueMember = "CategoryId";
+        }
+        private void ProductEntryForm_Load(object sender, EventArgs e)
+        {
+            _presenter.showCategories(this.categoryId);
         }
 
         private void numPrice_ValueChanged(object sender, EventArgs e)
@@ -61,6 +63,11 @@ namespace Product_Inventory_Manager
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numQuantity_ValueChanged(object sender, EventArgs e)
         {
 
         }

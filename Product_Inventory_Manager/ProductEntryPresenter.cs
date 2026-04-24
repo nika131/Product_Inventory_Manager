@@ -1,6 +1,7 @@
 ﻿using Product_Inventory_Manager.Data;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,12 @@ namespace Product_Inventory_Manager
     internal class ProductEntryPresenter
     {
         private readonly IProductEntryView _view;
+        private readonly IProductRepository _repository;
 
-        public ProductEntryPresenter(IProductEntryView view)
+        public ProductEntryPresenter(IProductEntryView view, IProductRepository repository)
         {
             _view = view;
+            _repository = repository;
         }
 
         public void saveProduct()
@@ -38,20 +41,36 @@ namespace Product_Inventory_Manager
 
             try
             {
-                var args = new Dictionary<string, object>
-                {
-                    {"@id", _view.productId },
-                    { "@name", _view.productName },
-                    { "@catId", _view.categoryId },
-                    { "@qty", _view.productQuantity },
-                    { "@price", _view.productPrice },
-                };
+                _repository.upSert(
+                    _view.productId, 
+                    _view.productName, 
+                    _view.categoryId, 
+                    _view.productQuantity, 
+                    _view.productPrice
+                );
 
-                DatabaseHelper.ExecuteNonQuery("sp_UpsertProduct", args);
                 _view.closeView();
             }catch (Exception ex)
             {
                 _view.showMessage(ex.Message);
+            }
+        }
+
+        public void showCategories(int selectedId = 0)
+        {
+            try
+            {
+                DataTable dt = _repository.getCategories();
+
+                _view.loadCategories(dt);
+
+                if (selectedId > 0)
+                {
+                    _view.categoryId = selectedId;
+                }
+            }catch (Exception ex)
+            {
+                _view.showMessage("Can not get categories: " + ex.Message);
             }
         }
     }

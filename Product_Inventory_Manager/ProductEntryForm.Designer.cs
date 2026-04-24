@@ -59,6 +59,7 @@
             this.numQuantity.Name = "numQuantity";
             this.numQuantity.Size = new System.Drawing.Size(120, 22);
             this.numQuantity.TabIndex = 5;
+            this.numQuantity.ValueChanged += new System.EventHandler(this.numQuantity_ValueChanged);
             // 
             // numPrice
             // 

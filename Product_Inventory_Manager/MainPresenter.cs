@@ -13,17 +13,19 @@ namespace Product_Inventory_Manager
     internal class MainPresenter
     {
         private readonly IMainView _view;
+        private readonly IProductRepository _repository;
 
-        public MainPresenter(IMainView view)
+        public MainPresenter(IMainView view, IProductRepository repository)
         {
             _view = view;
+            _repository = repository;
         }
 
         public void refreshData()
         {
             try
             {
-                DataTable dt = DatabaseHelper.ExecuteStoredProcedure("sp_GetAllProducts");
+                DataTable dt = _repository.getAll();
                 _view.gridDataSource = dt;
                 updateCalculations(dt);
             }
@@ -35,10 +37,16 @@ namespace Product_Inventory_Manager
 
         public void search(string keyword)
         {
-            var args = new Dictionary<string, object> { { "@Keyword", keyword } };
-            DataTable dt = DatabaseHelper.ExecuteStoredProcedure("sp_SearchProducts", args);
-            _view.gridDataSource = dt;
-            updateCalculations(dt);
+            try
+            {
+                DataTable dt = _repository.search(keyword);
+                _view.gridDataSource = dt;
+                updateCalculations(dt);
+            }
+            catch (Exception ex) 
+            {
+                _view.showError(ex.Message);
+            }
         }
 
         public void updateCalculations(DataTable dt)
@@ -67,8 +75,7 @@ namespace Product_Inventory_Manager
             {
                 try
                 {
-                    var args = new Dictionary<string, object> { { "@productId", id } };
-                    DatabaseHelper.ExecuteNonQuery("sp_DeleteProduct", args);
+                    _repository.delete(id);
                     refreshData();
                 }
                 catch (Exception ex)

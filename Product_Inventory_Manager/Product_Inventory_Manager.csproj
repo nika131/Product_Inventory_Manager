@@ -56,6 +56,7 @@
     </Compile>
     <Compile Include="IMainView.cs" />
     <Compile Include="IProductEntryView.cs" />
+    <Compile Include="IProductRepository.cs" />
     <Compile Include="MainPresenter.cs" />
     <Compile Include="ProductEntryForm.cs">
       <SubType>Form</SubType>
@@ -64,6 +65,7 @@
       <DependentUpon>ProductEntryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductEntryPresenter.cs" />
+    <Compile Include="ProductRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

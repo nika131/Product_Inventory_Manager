@@ -17,7 +17,7 @@ namespace Product_Inventory_Manager
         public Form1()
         {
             InitializeComponent();
-            _presenter = new MainPresenter(this);
+            _presenter = new MainPresenter(this, new ProductRepository());
             _presenter.refreshData();
             this.dgvProducts.CellFormatting += new DataGridViewCellFormattingEventHandler(this.dgvProducts_CellFormatting);
         }
