@@ -1,4 +1,7 @@
 ﻿using Product_Inventory_Manager.Data;
+using Product_Inventory_Manager.Presenters;
+using Product_Inventory_Manager.Repositories;
+using Product_Inventory_Manager.Views.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Product_Inventory_Manager
+namespace Product_Inventory_Manager.Repositories
 {
     internal class ProductRepository : IProductRepository
     {

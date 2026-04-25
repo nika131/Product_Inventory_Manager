@@ -1,4 +1,7 @@
 ﻿using Product_Inventory_Manager.Data;
+using Product_Inventory_Manager.Presenters;
+using Product_Inventory_Manager.Repositories;
+using Product_Inventory_Manager.Views.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -147,6 +150,7 @@ namespace Product_Inventory_Manager
             this.dgvProducts.RowTemplate.Height = 24;
             this.dgvProducts.Size = new System.Drawing.Size(802, 408);
             this.dgvProducts.TabIndex = 0;
+            this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentClick);
             // 
             // ProductId
             // 
@@ -158,7 +162,7 @@ namespace Product_Inventory_Manager
             // 
             // ProductName
             // 
-            this.ProductName.DataPropertyName = "ProductName"; 
+            this.ProductName.DataPropertyName = "ProductName";
             this.ProductName.HeaderText = "ProductName";
             this.ProductName.MinimumWidth = 6;
             this.ProductName.Name = "ProductName";
@@ -289,6 +293,9 @@ namespace Product_Inventory_Manager
 
         }
 
-        
+        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

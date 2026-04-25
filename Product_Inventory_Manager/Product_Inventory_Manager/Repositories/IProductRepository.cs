@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Product_Inventory_Manager
+namespace Product_Inventory_Manager.Repositories
 {
-    internal interface IProductRepository
+    public interface IProductRepository
     {
         DataTable getAll();
         DataTable search(string keyword);

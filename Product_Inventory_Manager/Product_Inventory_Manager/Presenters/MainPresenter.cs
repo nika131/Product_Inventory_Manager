@@ -1,4 +1,6 @@
 ﻿using Product_Inventory_Manager.Data;
+using Product_Inventory_Manager.Repositories;
+using Product_Inventory_Manager.Views.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Product_Inventory_Manager
+namespace Product_Inventory_Manager.Presenters
 {
-    internal class MainPresenter
+    public class MainPresenter
     {
         private readonly IMainView _view;
         private readonly IProductRepository _repository;

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Product_Inventory_Manager
+namespace Product_Inventory_Manager.Views.Interfaces
 {
-    internal interface IProductEntryView
+    public interface IProductEntryView
     {
         int productId { get; set; }
         string productName { get; set; }

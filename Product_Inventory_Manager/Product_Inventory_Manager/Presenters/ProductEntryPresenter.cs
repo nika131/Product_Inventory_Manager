@@ -1,4 +1,6 @@
 ﻿using Product_Inventory_Manager.Data;
+using Product_Inventory_Manager.Repositories;
+using Product_Inventory_Manager.Views.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Product_Inventory_Manager
+namespace Product_Inventory_Manager.Presenters
 {
     internal class ProductEntryPresenter
     {
