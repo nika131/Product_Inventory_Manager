@@ -35,6 +35,8 @@ namespace Product_Inventory_Manager
         private System.Windows.Forms.Label lblTotalItems;
         private System.Windows.Forms.Label lblTotalValue;
         private System.Windows.Forms.Label lblLowStock;
+        private System.Windows.Forms.Label lblTotalProfit;
+        private System.Windows.Forms.Button btnSupplierView;
     }
 }
 

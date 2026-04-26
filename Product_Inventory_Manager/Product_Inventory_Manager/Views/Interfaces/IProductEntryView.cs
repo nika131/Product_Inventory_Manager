@@ -15,9 +15,13 @@ namespace Product_Inventory_Manager.Views.Interfaces
         int productQuantity { get; set; }
         int categoryId { get; set; }
         int initialCategoryId { get; set; }
+        decimal costPrice { get; set; }
+        int supplierId { get; set; }
 
         void showMessage(string message);
         void closeView();
         void loadCategories(DataTable categories);
+
+        void loadSuppliers(DataTable suppliers);
     }
 }

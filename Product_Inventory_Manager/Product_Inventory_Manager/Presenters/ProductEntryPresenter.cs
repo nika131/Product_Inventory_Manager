@@ -48,7 +48,9 @@ namespace Product_Inventory_Manager.Presenters
                     _view.productName, 
                     _view.categoryId, 
                     _view.productQuantity, 
-                    _view.productPrice
+                    _view.productPrice,
+                    _view.costPrice,
+                    _view.supplierId
                 );
 
                 _view.closeView();
@@ -58,21 +60,21 @@ namespace Product_Inventory_Manager.Presenters
             }
         }
 
-        public void showCategories(int selectedId = 0)
+        public void showInitializationData(int selectedCatId = 0, int selectedSupId = 0)
         {
             try
             {
-                DataTable dt = _repository.getCategories();
+                DataTable cats = _repository.getCategories();
+                DataTable sups = _repository.getSuppliers();
+                
+                _view.loadCategories(cats);
+                _view.loadSuppliers(sups);
 
-                _view.loadCategories(dt);
-
-                if (selectedId > 0)
-                {
-                    _view.categoryId = selectedId;
-                }
+                if (selectedCatId > 0) _view.categoryId = selectedCatId;
+                if (selectedSupId > 0) _view.supplierId = selectedSupId;
             }catch (Exception ex)
             {
-                _view.showMessage("Can not get categories: " + ex.Message);
+                _view.showMessage("Could not load categories and supliers: " + ex.Message);
             }
         }
     }

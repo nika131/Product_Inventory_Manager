@@ -56,19 +56,24 @@ namespace Product_Inventory_Manager.Presenters
             if (dt == null) return;
 
             int totalItmes = dt.Rows.Count;
-            decimal totalValues = 0;
+            decimal totalValue = 0;
             int lowStock = 0;
+            decimal totalPotentialProfit = 0;
 
             foreach (DataRow row in dt.Rows)
             {
-                decimal price = row["ProductPrice"] != DBNull.Value ? Convert.ToDecimal(row["ProductPrice"]) : 0;
-                int qty = row["Quantity"] != DBNull.Value ? Convert.ToInt32(row["Quantity"]) : 0;
-                totalValues += (price * qty);
+                decimal price = Convert.ToDecimal(row["ProductPrice"]);
+                decimal costPrice = Convert.ToDecimal(row["costPrice"]);
+                int qty = Convert.ToInt32(row["Quantity"]);
+
+                totalValue += (price * qty);
+                totalPotentialProfit += ((price - costPrice) * qty);
                 if (qty < 5) lowStock++;
             }
 
             _view.totalItemsText = $"Total Products: {totalItmes}";
-            _view.totalValueText = $"Total Value: {totalValues:C}";
+            _view.totalValueText = $"Total Value: {totalValue:C}";
+            _view.totalProfitText = $"Total Potential Profit: {totalPotentialProfit:C}";
             _view.lowStockText = $"Low Stock Alerts: {lowStock}";
             _view.lowStockColor = lowStock > 0 ? Color.Red : Color.Black;
         }

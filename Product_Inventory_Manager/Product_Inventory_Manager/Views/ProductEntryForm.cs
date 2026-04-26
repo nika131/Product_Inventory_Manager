@@ -28,14 +28,21 @@ namespace Product_Inventory_Manager
         public string productName { get => txtName.Text; set => txtName.Text = value; }
         public decimal productPrice { get => numPrice.Value; set => numPrice.Value = value; }
         public int productQuantity { get => (int)numQuantity.Value; set => numQuantity.Value = value; }
-        private int _initialId;
-        public int initialCategoryId { get => _initialId; set => _initialId = value; }
+        private int _initialCatId;
+        public int initialCategoryId { get => _initialCatId; set => _initialCatId = value; }
         public int categoryId
         {
-            get => cbCategory.SelectedValue != null ? (int)cbCategory.SelectedValue : _initialId;
+            get => cbCategory.SelectedValue != null ? (int)cbCategory.SelectedValue : _initialCatId;
             set => cbCategory.SelectedValue = value;
         }
         public int productId { get; set; } = 0;
+        public decimal costPrice { get => numCostPrice.Value; set => numCostPrice.Value = value; }
+        private int _initialSupId;
+        public int initialSupplierId { get => _initialSupId; set => _initialSupId = value; }
+        public int supplierId {
+            get => cbSupplier.SelectedValue != null ? (int)cbSupplier.SelectedValue : _initialSupId;
+            set => cbSupplier.SelectedValue = value;    
+        }
 
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -52,29 +59,16 @@ namespace Product_Inventory_Manager
             cbCategory.DisplayMember = "Name";
             cbCategory.ValueMember = "CategoryId";
         }
+
+        public void loadSuppliers(DataTable suppliers)
+        {
+            cbSupplier.DataSource = suppliers;
+            cbSupplier.DisplayMember = "Name";
+            cbSupplier.ValueMember = "SupplierId";
+        }
         private void ProductEntryForm_Load(object sender, EventArgs e)
         {
-            _presenter.showCategories(this.initialCategoryId);
-        }
-
-        private void numPrice_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numQuantity_ValueChanged(object sender, EventArgs e)
-        {
-
+            _presenter.showInitializationData(this.initialCategoryId, this.initialSupplierId);
         }
     }
 }

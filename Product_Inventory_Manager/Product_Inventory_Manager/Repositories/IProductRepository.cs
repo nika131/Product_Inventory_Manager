@@ -11,8 +11,9 @@ namespace Product_Inventory_Manager.Repositories
     {
         DataTable getAll();
         DataTable search(string keyword);
-        void upSert(int id, string name, int catId, int qty, decimal price);
+        void upSert(int id, string name, int catId, int qty, decimal price, decimal costPrice, int supplierId);
         void delete(int id);
         DataTable getCategories();
+        DataTable getSuppliers();
     }
 }

@@ -14,6 +14,7 @@ namespace Product_Inventory_Manager.Views.Interfaces
 
         string totalItemsText { set; }
         string totalValueText { set; }
+        string totalProfitText { set; }
         string lowStockText { set; }
         Color lowStockColor { set; }
 

@@ -16,11 +16,17 @@ namespace Product_Inventory_Manager.Repositories
         public DataTable search(string keyword) =>
             DatabaseHelper.ExecuteStoredProcedure("sp_SearchProducts", new Dictionary<string, object> { { "@Keyword", keyword } });
 
-        public void upSert(int id, string name, int catId, int qty, decimal price)
+        public void upSert(int id, string name, int catId, int qty, decimal price, decimal costPrice, int supplierId)
         {
             var args = new Dictionary<string, object>
             {
-                { "@id", id }, { "@name", name}, { "@catId", catId }, { "@qty", qty }, { "@price", price } 
+                { "@id", id }, 
+                { "@name", name}, 
+                { "@catId", catId }, 
+                { "@qty", qty }, 
+                { "@price", price },
+                { "@costPrice", costPrice },
+                { "@supplierId", supplierId }
             };
             DatabaseHelper.ExecuteNonQuery("sp_UpsertProduct", args);
         }
@@ -30,5 +36,6 @@ namespace Product_Inventory_Manager.Repositories
 
         public DataTable getCategories() => DatabaseHelper.ExecuteStoredProcedure("sp_GetCategories");
 
+        public DataTable getSuppliers() => DatabaseHelper.ExecuteStoredProcedure("sp_GetSuppliers");
     }
 }

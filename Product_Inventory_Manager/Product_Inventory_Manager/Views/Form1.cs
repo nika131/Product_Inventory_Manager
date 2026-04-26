@@ -29,6 +29,7 @@ namespace Product_Inventory_Manager
         public DataTable gridDataSource { set => dgvProducts.DataSource = value; }
         public string totalItemsText { set => lblTotalItems.Text = value; }
         public string totalValueText { set => lblTotalValue.Text = value; }
+        public string totalProfitText { set => lblTotalProfit.Text = value; }
         public string lowStockText { set => lblLowStock.Text = value; }
         public Color lowStockColor { set => lblLowStock.ForeColor = value; }
 
@@ -131,6 +132,8 @@ namespace Product_Inventory_Manager
             this.lblTotalItems = new System.Windows.Forms.Label();
             this.lblTotalValue = new System.Windows.Forms.Label();
             this.lblLowStock = new System.Windows.Forms.Label();
+            this.lblTotalProfit = new System.Windows.Forms.Label();
+            this.btnSupplierView = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -144,7 +147,7 @@ namespace Product_Inventory_Manager
             this.CategoryId,
             this.ProductPrice,
             this.Quantity});
-            this.dgvProducts.Location = new System.Drawing.Point(12, 36);
+            this.dgvProducts.Location = new System.Drawing.Point(12, 19);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowHeadersWidth = 51;
             this.dgvProducts.RowTemplate.Height = 24;
@@ -268,15 +271,36 @@ namespace Product_Inventory_Manager
             // lblLowStock
             // 
             this.lblLowStock.AutoSize = true;
-            this.lblLowStock.Location = new System.Drawing.Point(357, 520);
+            this.lblLowStock.Location = new System.Drawing.Point(518, 520);
             this.lblLowStock.Name = "lblLowStock";
             this.lblLowStock.Size = new System.Drawing.Size(44, 16);
             this.lblLowStock.TabIndex = 9;
             this.lblLowStock.Text = "label4";
             // 
+            // lblTotalProfit
+            // 
+            this.lblTotalProfit.AutoSize = true;
+            this.lblTotalProfit.Location = new System.Drawing.Point(333, 520);
+            this.lblTotalProfit.Name = "lblTotalProfit";
+            this.lblTotalProfit.Size = new System.Drawing.Size(44, 16);
+            this.lblTotalProfit.TabIndex = 10;
+            this.lblTotalProfit.Text = "label4";
+            // 
+            // btnSupplierView
+            // 
+            this.btnSupplierView.Location = new System.Drawing.Point(838, 281);
+            this.btnSupplierView.Name = "btnSupplierView";
+            this.btnSupplierView.Size = new System.Drawing.Size(122, 38);
+            this.btnSupplierView.TabIndex = 11;
+            this.btnSupplierView.Text = "Supplieres";
+            this.btnSupplierView.UseVisualStyleBackColor = true;
+            this.btnSupplierView.Click += new System.EventHandler(this.btnSupplierView_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(1091, 671);
+            this.Controls.Add(this.btnSupplierView);
+            this.Controls.Add(this.lblTotalProfit);
             this.Controls.Add(this.lblLowStock);
             this.Controls.Add(this.lblTotalValue);
             this.Controls.Add(this.lblTotalItems);
@@ -296,6 +320,12 @@ namespace Product_Inventory_Manager
         private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnSupplierView_Click(object sender, EventArgs e)
+        {
+            SupplierForm supplierForm = new SupplierForm();
+            supplierForm.ShowDialog();
         }
     }
 }
