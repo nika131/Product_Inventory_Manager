@@ -1,5 +1,6 @@
 ﻿using Product_Inventory_Manager.Data;
 using Product_Inventory_Manager.Presenters;
+using Product_Inventory_Manager.Product_Inventory_Manager.Views;
 using Product_Inventory_Manager.Repositories;
 using Product_Inventory_Manager.Views.Interfaces;
 using System;
@@ -134,6 +135,7 @@ namespace Product_Inventory_Manager
             this.lblLowStock = new System.Windows.Forms.Label();
             this.lblTotalProfit = new System.Windows.Forms.Label();
             this.btnSupplierView = new System.Windows.Forms.Button();
+            this.btnHomePage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -296,9 +298,20 @@ namespace Product_Inventory_Manager
             this.btnSupplierView.UseVisualStyleBackColor = true;
             this.btnSupplierView.Click += new System.EventHandler(this.btnSupplierView_Click);
             // 
+            // btnHomePage
+            // 
+            this.btnHomePage.Location = new System.Drawing.Point(841, 325);
+            this.btnHomePage.Name = "btnHomePage";
+            this.btnHomePage.Size = new System.Drawing.Size(122, 38);
+            this.btnHomePage.TabIndex = 12;
+            this.btnHomePage.Text = "HomePage";
+            this.btnHomePage.UseVisualStyleBackColor = true;
+            this.btnHomePage.Click += new System.EventHandler(this.btnHomePage_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(1091, 671);
+            this.Controls.Add(this.btnHomePage);
             this.Controls.Add(this.btnSupplierView);
             this.Controls.Add(this.lblTotalProfit);
             this.Controls.Add(this.lblLowStock);
@@ -326,6 +339,12 @@ namespace Product_Inventory_Manager
         {
             SupplierForm supplierForm = new SupplierForm();
             supplierForm.ShowDialog();
+        }
+
+        private void btnHomePage_Click(object sender, EventArgs e)
+        {
+            MainShell mainShell = new MainShell();
+            mainShell.ShowDialog();
         }
     }
 }

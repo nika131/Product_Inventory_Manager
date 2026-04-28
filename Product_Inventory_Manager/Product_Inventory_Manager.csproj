@@ -65,6 +65,12 @@
     <Compile Include="Product_Inventory_Manager\Repositories\IProductRepository.cs" />
     <Compile Include="Product_Inventory_Manager\Presenters\MainPresenter.cs" />
     <Compile Include="Product_Inventory_Manager\Views\Interfaces\ISupplierView.cs" />
+    <Compile Include="Product_Inventory_Manager\Views\MainShell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product_Inventory_Manager\Views\MainShell.Designer.cs">
+      <DependentUpon>MainShell.cs</DependentUpon>
+    </Compile>
     <Compile Include="Product_Inventory_Manager\Views\ProductEntryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     <EmbeddedResource Include="Product_Inventory_Manager\Views\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Product_Inventory_Manager\Views\MainShell.resx">
+      <DependentUpon>MainShell.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Product_Inventory_Manager\Views\ProductEntryForm.resx">
       <DependentUpon>ProductEntryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +107,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -112,6 +122,32 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\icons8-burger-bar-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-reports-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-supplier-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-inventory-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-dashboard-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-home-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-home-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-inventory-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-reports-32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

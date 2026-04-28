@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Product_Inventory_Manager.Product_Inventory_Manager.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace Product_Inventory_Manager
                 MessageBox.Show("A Critical Error Has Occured" + e.Exception.Message);
             };
 
-            Application.Run(new Form1());
+            Application.Run(new MainShell());
         }
     }
 }
